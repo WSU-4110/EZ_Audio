@@ -1,5 +1,8 @@
-<h2> This file is describing the system requirements and instructions to build and install the EZ_Audoi.<h2>
+ # EZ_Audio
 
+![EZ Audio - Logo](/images/EZ_audio_logo.png)
+
+4111 project for team 3
 <h3> System requirement </h3>
 
 Run the following commands for the needed Python libraries:
