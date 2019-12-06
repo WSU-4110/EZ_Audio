@@ -1,7 +1,7 @@
 <h2> This file is describing the system requirements and instructions to build and install the EZ_Audoi.<h2>
 
 <h3> System requirement </h3>
-<h4>Dependencies</h4>
+
 Run the following commands for the needed Python libraries:
 
 * pip install pyqt5
