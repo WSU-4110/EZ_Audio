@@ -1,5 +1,5 @@
-**This file is describing the system requirements and instructions to build and install the EZ_Audoi.** 
+<h2> This file is describing the system requirements and instructions to build and install the EZ_Audoi.<h2>
 
-<h2> System requirement <h2>
+<h3> System requirement <h3>
 
-<h> Instructions to build and install the EZ_Audoi: <h>
+<h3> Instructions to build and install the EZ_Audoi: <h3>
