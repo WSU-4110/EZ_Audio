@@ -1,4 +1,4 @@
- # EZ_Audio
+System requirement  # EZ_Audio
 
 ![EZ Audio - Logo](/images/EZ_audio_logo.png)
 
@@ -13,6 +13,13 @@ Run the following commands for the needed Python libraries:
 
 <h3> Instructions to build and install the EZ_Audoi: </h3>
 
-Run the Main.py file. Enter login credentials to connect to your Google Drive account. Then copy and paste a URL of your chosen YouTube video into the center text box, and hit Convert.
+- Install all System requirement  
+
+- Download the zip file from the master branch. 
+
+- Run the Main Window.py file.
+
+- Follow the instructions from the functionalties section  see ( ) 
+
 
 *Windows 10 is only supported OS. Other operating systems may work, but they have not been tested.*
