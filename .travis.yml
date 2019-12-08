@@ -1,4 +1,4 @@
 language: Python
-script:  main
+script:  Unit_test
 Pyqt5:
   - pycharm
