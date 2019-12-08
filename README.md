@@ -37,7 +37,7 @@ EZ Audio is a desktop program to easily download the audio track from a YouTube 
 
 - Click the convert button to start converting the URL.
 
-*Third: connect to google drive*
+*Connect to google drive*
 
 - Click on the cloud button.
 
@@ -49,7 +49,7 @@ EZ Audio is a desktop program to easily download the audio track from a YouTube 
 
 - Click sign out button to sign out from google drive 
 
-*Forth: The library (The library was not fully implemented like it supposed to be, but they are some functionality that was implemented during this project that simulates the functionality library)*
+*The library: (The library was not fully implemented like it supposed to be, but they are some functionality that was implemented during this project that simulates the functionality library)*
 
 - Click on the library button
 
