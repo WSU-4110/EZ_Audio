@@ -2,23 +2,29 @@
 
 ![EZ Audio - Logo](/images/EZ_audio_logo.png)
 
-4111 project for team 3
+(4110 project for Team 3)
 
-Now using Python for a desktop application for Windows 10
+*A Python for a desktop application for Windows 10*
 
 
 
 <h2> Purpose </h2>
-EZ Audio is a desktop program to easily transfer the audio track from a YouTube video to your phone.
+EZ Audio is a desktop program to easily download the audio track from a YouTube video to your computer
 
-<h3>  Functionalities </h3>
+<h2> Installation </h2>
 
-Ez_Audoi is an application that takes a YouTube video and trnasfer to an mp4 or mp3 file.
-To do so:
 
-<h4> First: install all requirements see (Installation.md) </h4> 
 
-<h4> Second:  convert a URL </h4>
+**First**: Install all Python requirements (see Installation.md)
+
+**Second**: Copy all source code files to your computer
+
+**Third**: Download youtube-dl.exe and ffmpeg.exe (any version from 2019). Place both exe files in the same folder as your newly downloaded Python files
+
+<h2> How to use </h2>
+
+
+<h3>Convert a video</h3>
   
   
 - Copy and paste a YouTube URL to the text box and then click Add URL button.
@@ -31,7 +37,7 @@ To do so:
 
 - Click the convert button to start converting the URL.
 
-<h4> Third: connect to google drive </h4>
+*Third: connect to google drive*
 
 - Click on the cloud button.
 
@@ -43,14 +49,14 @@ To do so:
 
 - Click sign out button to sign out from google drive 
 
-<h4> Forth: The library (The library was not fully implemented like it supposed to be, but they are some functionality that was implemented during this project that simulates the functionality library) </h4>
+*Forth: The library (The library was not fully implemented like it supposed to be, but they are some functionality that was implemented during this project that simulates the functionality library)*
 
 - Click on the library button
 
 - Choose what type of sorting to sort the library, by date, name or channel. And all these types have the option of ascending order or descending order. 
 
 
-<h3> Contributors </h3>
+<h2> Contributors </h2>
 
 **Jack**
 
