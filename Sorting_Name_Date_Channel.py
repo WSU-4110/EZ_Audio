@@ -16,10 +16,10 @@ class List(QMainWindow):
     def __init__(self):
         super().__init__()
         self.title = 'Sort the library'
-        self.left = 1000
-        self.top = 1000
+        self.left = 0
+        self.top = 0
         self.width = 1000
-        self.height = 5000
+        self.height = 500
         self.initUI()
 
     @pyqtSlot()
@@ -137,5 +137,4 @@ if __name__ == '__main__':
     ex = List()
     ex.show()
     sys.exit(app.exec_())
-
 

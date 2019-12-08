@@ -1,140 +1,192 @@
-from PyQt5.QtWidgets import QMainWindow, QLineEdit, QPushButton, QListWidget,QMessageBox
+
+from __future__ import print_function
+import pickle
+import os.path
+
+from googleapiclient.discovery import build
+from google_auth_oauthlib.flow import InstalledAppFlow
+from google.auth.transport.requests import Request
+
+
+import sys
+
+from PyQt5.QtWidgets import QMainWindow, QApplication, QWidget, QPushButton, QAction, QLineEdit, QMessageBox, QListWidget
 from PyQt5.QtCore import pyqtSlot
-from GoogleAuthorization import Authorization
-from SigningOut import  SigningOut
-from DownloadingFile import DownLoadFile
-from UploadingFile import UploadingFile
 
-
-# from AddingURL import AddingURL
-
+# If modifying these scopes, delete the file token.pickle.
 SCOPES = ['https://www.googleapis.com/auth/drive.metadata.readonly']
 
-class Window(QMainWindow):
+
+
+class App(QMainWindow):
 
     @pyqtSlot()
     def __init__(self):
         super().__init__()
         self.title = 'Google Drive Connection'
-        self.left = 0
-        self.top = 0
-        self.width = 10000
-        self.height = 20000
+        self.left = 1000
+        self.top = 1000
+        self.width = 1000
+        self.height = 5000
         self.initUI()
 
     @pyqtSlot()
     def initUI(self):
         self.setWindowTitle(self.title)
         self.setGeometry(self.left, self.top, self.width, self.height)
-        self.setStyleSheet("background-color: gray;")
+        #self.setStyleSheet("""QMainWindow{ background: yellow; }""")
 
-        # # Create textbox
-        # self.textbox = QLineEdit(self)
-        # self.textbox.move(20, 20)
-        # self.textbox.resize(280, 40)
-        # self.textbox.setStyleSheet("background-color: white;")
-        #
-        # # Create a button in the window
-        # self.add_URL_button = QPushButton('Add URL', self)
-        # self.add_URL_button.move(20, 80)
-        # self.add_URL_button.resize(289, 49)
-        # self.add_URL_button.setStyleSheet("background-color: white;")
-        #
-        # # self.textboxValue1 = "ssss"
-        # # self.adding = AddingURL()
-        # # self.adding.addUrl(self.textboxValue1, self.URL_List)
-        # #self.add_URL_button.clicked.connect(self.adding.addUrl("ddj"))
-        #
-        # self.add_URL_button.clicked.connect(self.addUrl)
-        #
-        #
-        # self.URL_List = QListWidget(self)
-        # self.URL_List.move(0, 200)
-        # self.URL_List.resize(700, 1000)
-        # self.URL_List.setStyleSheet("""QListWidget{ background: white; }""")
-        # self.URL_List.
+        # Create textbox
+        self.textbox = QLineEdit(self)
+        self.textbox.move(20, 20)
+        self.textbox.resize(280, 40)
+
+        # Create a button in the window
+        self.button = QPushButton('Add URL', self)
+        self.button.move(20, 80)
+
+        self.listwidget = QListWidget(self)
+        self.listwidget.move(200, 200)
+        self.listwidget.resize(1000, 1000)
+        self.setStyleSheet("""QListWidget{ background: green; }""")
+
+        #goolle coneect
+
+        self.btn = QPushButton('Connect To Google Drive', self)
+        self.btn.resize(289,49)
+        self.btn.move(1000, 50)
 
 
+        self.button3 = QPushButton('Download', self)
+        self.button3.resize(289,49)
+        self.button3.move(1500, 50)
 
-        # goolle coneect
-        self.Connect_button = QPushButton('Connect To Google Drive', self)
-        self.Connect_button.resize(289, 49)
-        self.Connect_button.move(1000, 50)
-        self.Connect_button.setStyleSheet("background-color: white;")
-
-        self.auth = Authorization()
-        self.Connect_button.clicked.connect(self.auth.authorization)
+        self.button4 = QPushButton('Upload', self)
+        self.button4.resize(289,49)
+        self.button4.move(2000, 50)
 
 
-        self.Download_button = QPushButton('Download', self)
-        self.Download_button.resize(289, 49)
-        self.Download_button.move(1500, 50)
-        self.Download_button.setStyleSheet("background-color: white;")
-
-        self.download = DownLoadFile()
-        self.Download_button.clicked.connect(self.download.downloadFile)
-
-        self.Upload_button = QPushButton('Upload', self)
-        self.Upload_button.resize(289, 49)
-        self.Upload_button.move(2000, 50)
-        self.Upload_button.setStyleSheet("background-color: white;")
+        # connect button to function on_click
+        self.button.clicked.connect(self.addUrl)
+        self.listwidget.clicked.connect(self.removeURL)
+        self.btn.clicked.connect(self.auth)
+        # self.button3.clicked.connect(self.downloadFile)
+        # self.button4.clicked.connect(self.uploadFile)
 
 
-        # self.upload = UploadingFile()
-        # self.Upload_button.clicked.connect(self.upload.uploadFile)
 
-        self.Sign_Out_button = QPushButton('Sign out', self)
-        self.Sign_Out_button.resize(289, 49)
-        self.Sign_Out_button.move(500, 50)
-        self.Sign_Out_button.setStyleSheet("background-color: white;")
+    def addUrl(self):
+        textboxValue = self.textbox.text()
+        subString = textboxValue[0:23]
+        print(subString)
 
-        self.out = SigningOut()
-        self.Sign_Out_button.clicked.connect(self.out.signOut)
+        if subString == "https://www.youtube.com":
+            self.listwidget.addItem(textboxValue)
+        else:
+            QMessageBox.question(self, 'Error', "The Url you entered is not a valid ", QMessageBox.Ok,
+                                 QMessageBox.Ok)
 
-        # self.convert_Button = QPushButton('concert', self)
-        # self.convert_Button.resize(289, 49)
-        # self.convert_Button.move(500, 100)
-        # self.convert_Button.setStyleSheet("background-color: white;")
+    def removeURL(self):
+        index = self.listwidget.row(self.listwidget.currentItem())
+        self.listwidget.takeItem(index)
 
-        # self.out = SigningOut()
-    #     self.conver.clicked.connect(self.converting)
+    # @pyqtSlot()
+    # def downloadFile(self):
     #
-    #     self.URL_List.clicked.connect(self.removeURL)
-    #
-    # def addUrl(self):
-    #     textboxValue = self.textbox.text()
-    #     subString = textboxValue[0:23]
-    #     # print(subString)
-    #
-    #     if subString == "https://www.youtube.com":
-    #         self.URL_List.addItem(textboxValue)
+    #     # Call the Drive v3 API
+    #     creds = None
+    #     if os.path.exists('token.pickle'):
+    #         with open('token.pickle', 'rb') as token:
+    #             creds = pickle.load(token)
     #     else:
-    #         QMessageBox.question(self, 'Error', "The Url you entered is not a valid ", QMessageBox.Ok,
+    #         QMessageBox.question(self, 'Error', "Connect to google drive first ", QMessageBox.Ok,
     #                              QMessageBox.Ok)
-    #
-    #
-    # def removeURL(self):
-    #     index = self.URL_List.row(self.URL_List.currentItem())
-    #
-    #     buttonReply = QMessageBox.question(self, 'Message', "Do you want to delete?",
-    #                                        QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
-    #     if buttonReply == QMessageBox.Yes:
-    #         self.URL_List.takeItem(index)
-    #     else:
     #         return
     #
-    # def conerting(self):
+    #     service = build('drive', 'v3', credentials=creds)
+    #     results = service.files().list(
+    #         pageSize=10, fields="nextPageToken, files(id, name)").execute()
+    #     items = results.get('files', [])
     #
-    #     index = self.URL_List.item(1)
-    #     #print (index)
+    #     if not items:
+    #         print('No files found.')
+    #     else:
+    #         print('Files:')
+    #         for item in items:
+    #             print(u'{0} ({1})'.format(item['name'], item['id']))
+
+    # @pyqtSlot()
+    # def uploadFile(self):
+    #     creds = None
+    #     if os.path.exists('token.pickle'):
+    #         with open('token.pickle', 'rb') as token:
+    #             creds = pickle.load(token)
+    #     else:
+    #         QMessageBox.question(self, 'Error', "Connect to google drive first ", QMessageBox.Ok,
+    #                              QMessageBox.Ok)
+    #         return
     #
-    #     while index is not None:
-    #         print(self.URL_List.item(0).text())
-    #         self.URL_List.takeItem(0)
-    #         index = self.URL_List.item(0)
+    #     service = build('drive', 'v3', credentials=creds)
+    #
+    #     file_metadata = {'name': 'google.jpg'}
+    #     media = service('google.jpg',
+    #                             mimetype='image/jpeg')
+    #     file = service.files().create(body=file_metadata,
+    #                                         media_body=media,
+    #                                         fields='id').execute()
+    #     print('File ID: %s' % file.get('id'))
+
+
+    @pyqtSlot()
+    def auth(self):
+
+        """Shows basic usage of the Drive v3 API.
+        Prints the names and ids of the first 10 files the user has access to.
+        """
+        if os.path.exists('token.pickle'):
+            self.on_click()
+        else:
+            creds = None
+            # The file token.pickle stores the user's access and refresh tokens, and is
+            # created automatically when the authorization flow completes for the first
+            # time.
+            if os.path.exists('token.pickle'):
+                with open('token.pickle', 'rb') as token:
+                    creds = pickle.load(token)
+            # If there are no (valid) credentials available, let the user log in.
+            if not creds or not creds.valid:
+                if creds and creds.expired and creds.refresh_token:
+                    creds.refresh(Request())
+                else:
+                    flow = InstalledAppFlow.from_client_secrets_file('credentials.json', SCOPES)
+                    creds = flow.run_local_server(port=0)
+
+                # Save the credentials for the next run
+                with open('token.pickle', 'wb') as token:
+                    pickle.dump(creds, token)
+
+            # service = build('drive', 'v3', credentials=creds)
+            self.AuthMessage()
 
 
 
+    @pyqtSlot()
+    def on_click(self):
+        QMessageBox.question(self, 'Message', "You are already connected" , QMessageBox.Ok,
+                             QMessageBox.Ok)
+    @pyqtSlot()
+    def AuthMessage(self):
+        QMessageBox.question(self, 'Message', "The connection was successfully done" , QMessageBox.Ok,
+                             QMessageBox.Ok)
+    @pyqtSlot()
+    def of_click(self):
+        QMessageBox.question(self, 'Message - pythonspot.com', "You typed: " + textboxValue, QMessageBox.Ok,
+                             QMessageBox.Ok)
+        self.textbox.setText("")
 
 
-
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    ex = App()
+    ex.show()
+    sys.exit(app.exec_())

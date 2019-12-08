@@ -12,7 +12,7 @@ class Ui_MainWindow(object):
         self.defaultError = "Welcome to EZ Audio! Expand your audio library by entering a valid Youtube URL above."
         self.defaultURL = "Enter URL Here..."
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(401, 500)
+        MainWindow.resize(421, 500)
         font = QtGui.QFont()
         font.setFamily("Leelawadee UI Semilight")
         font.setPointSize(9)
@@ -172,7 +172,7 @@ class Ui_MainWindow(object):
         self.convert_Button.setFont(font)
         self.convert_Button.setStyleSheet("color: rgb(255, 255, 255);\n" "background-color: rgb(103, 103, 103);")
         self.convert_Button.resize(100, 25)
-        self.convert_Button.move(282, 190)
+        self.convert_Button.move(299, 190)
 
 
         self.initUI()
@@ -203,7 +203,7 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "EZ Audio"))
         self.URLBox.setText(_translate("MainWindow", self.defaultURL))
-        self.EZAudioLogo.setText(_translate("MainWindow", "<html><head/><body><p>EZ Audio</p><p><span style=\" font-size:11pt;\">Made by Yousif, Omar, Jack, and Khaled</span></p></body></html>"))
+        self.EZAudioLogo.setText(_translate("MainWindow", "<html><head/><body><p>EZ Audio</p><p><span style=\" font-size:11pt;\">By Yousif, Omar, Jack, and Khaled</span></p></body></html>"))
         self.LibraryButton.setText(_translate("MainWindow", "Library"))
         self.QueueButton.setText(_translate("MainWindow", "Cloud"))
         self.ConvertButton.setText(_translate("MainWindow", "Add Url"))
@@ -274,7 +274,7 @@ class Ui_MainWindow(object):
                                              QMessageBox.Ok)
         else:
             while index is not None:
-                print(self.URL_List.item(0).text())
+                # print(self.URL_List.item(0).text())
                 self.inputURL = self.URL_List.item(0).text()
                 x = str(self.formatCombo.currentText())
                 y = int(self.bitRateCombo.currentText())
