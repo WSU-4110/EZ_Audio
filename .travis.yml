@@ -1,4 +1,3 @@
 language: Python
-script:  Unit_test
-Pyqt5:
-  - pycharm
+script:  Unit_test.py
+
