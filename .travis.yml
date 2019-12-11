@@ -5,7 +5,7 @@ python:
 before_install:
   - pip install pyqt5
   - pip install google-api-python-client
-pip install google_auth_oauthlib
+  - pip install google_auth_oauthlib
 script:
   - python Unit_test.py
   - python Khaled_Features.py
