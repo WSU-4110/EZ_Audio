@@ -9,5 +9,5 @@ before_install:
 script:
   - python Khaled_Unit_test.py
   - python Omar_Unit_Test.py
-  
+  - python Jack_unit_tests.py
 
